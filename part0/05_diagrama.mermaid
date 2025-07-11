@@ -1,0 +1,19 @@
+
+sequenceDiagram
+    participant broswer
+    participant server
+
+    broswer ->> server : GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>broswer:Page HTML Single
+    deactivate server
+    broswer->>server:GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>broswer:Hoja de estilos css
+    deactivate server
+    broswer->>server:https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>broswer:[{data.json}]
+    deactivate server
+    Note right of broswer:La data la pinta la funcion js usando DOM:API
+    

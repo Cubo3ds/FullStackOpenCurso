@@ -1,0 +1,30 @@
+sequenceDiagram
+
+    participant usuario
+    participant browser
+    participant server
+
+    activate browser
+    usuario->>browser:ingresa al input una nueva nota al input de un formulario
+    usuario->>browser:da click al boton del formulario "save"
+    deactivate browser
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser:html document
+    deactivate server
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser:main css
+    deactivate server 
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser:main.js
+    deactivate server 
+    browser->>server:GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser:[{"content": "hola por cubo","date": "2025-07-10T20:34:13.783Z"}]
+    deactivate server 
+    Note right of browser: se ejecuta el callback de js para ver la nueva nota
+
+    
